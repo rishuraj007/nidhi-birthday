@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Nidhi ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+background:black;
+color:white;
+text-align:center;
+}
+
+/* background */
+
+#bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+filter:blur(2px) brightness(80%);
+z-index:1;
+transition:1s;
+}
+
+/* card */
+
+#card{
+position:relative;
+z-index:5;
+width:85vw;
+max-width:420px;
+padding:30px;
+background:rgba(0,0,0,0.45);
+border-radius:20px;
+transition:0.4s;
+}
+
+#text{
+font-size:20px;
+line-height:1.6;
+min-height:200px;
+white-space:pre-line;
+}
+
+/* button */
+
+button{
+margin-top:20px;
+padding:14px 28px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+box-shadow:0 0 15px rgba(255,77,109,0.6);
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+/* signature */
+
+#signature{
+margin-top:20px;
+font-size:16px;
+opacity:0.9;
+display:none;
+}
+
+/* floating hearts */
+
+.heart{
+position:fixed;
+bottom:-50px;
+font-size:32px;
+animation:floatUp 7s linear infinite;
+z-index:2;
+}
+
+@keyframes floatUp{
+from{transform:translateY(0);opacity:1;}
+to{transform:translateY(-110vh);opacity:0;}
+}
+
+/* sparkle animation */
+
+.sparkle{
+position:fixed;
+color:#ffd700;
+font-size:16px;
+animation:sparkleFloat 2s linear forwards;
+z-index:10;
+}
+
+@keyframes sparkleFloat{
+0%{opacity:1;transform:translateY(0) scale(0.5);}
+100%{opacity:0;transform:translateY(-80px) scale(1.5);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="bg"></div>
+
+<div id="card">
+
+<div id="text"></div>
+
+<button id="nextBtn" onclick="nextPage()">Next ❤️</button>
+
+<div id="signature">— Rishu ❤️</div>
+
+</div>
+
+<script>
+
+/* pages */
+
+const pages=[
+
+{
+image:"photo1.png",
+text:`Happy Birthday Nidhi ❤️
+
+My cutie, today is special
+because the most beautiful person
+in my life was born.
+
+Your smile makes my day better,
+and somehow you make my world
+a little brighter just by being in it.`,
+button:"Next ❤️"
+},
+
+{
+image:"black",
+text:`Ready for a little shayari?
+😮‍💨😮‍💨😮‍💨`,
+button:"Arz Kiya Hai 🎤"
+},
+
+{
+image:"photo2.png",
+text:`Din bhar ki daud mein
+
+Jab dil thak sa jata hai
+
+Raat mein aapki reels dekh ke
+
+Dil muskura sa jata hai
+`,
+button:"Muskura Ke Dabaye ❤️"
+},
+
+{
+image:"photo3.png",
+text:`Kabhi kabhi apni tasveer bhej diya karo
+
+Dil ko thoda sa khush kar diya karo
+
+Har baar mujhe maangna na pade
+
+Kabhi kabhi surprise hi de diya karo`,
+button:"Dil Se Dabaye ❤️"
+},
+
+{
+image:"photo4.png",
+text:`Aapki mehnat ek din rang layegi
+
+CA Final ki manzil bhi tumhe mil jayegi
+
+Main har dua mein tumhara naam rakhta hoon
+
+Mujhe pata hai meri madamji zaroor jeet jayegi`,
+button:"Dabaye ❤️"
+},
+
+{
+image:"photo5.png",
+text:`Shayari likhna itna aasaan nahi tha
+
+Dil ki baat kehna bhi utna aasaan nahi tha
+
+Isliye thodi madad ChatGPT se le li maine
+🥹👉👈
+Par har lafz ke peeche ehsaas sirf mera hi tha`,
+button:"Dabaye❤️"
+},
+
+{
+image:"photo6.jpeg",
+text:`One day soon,
+
+I will proudly call you
+my wife.
+
+Until that day comes,
+
+I will keep reminding you
+
+how special you are to me.
+
+Happy Birthday
+
+my Madamji ❤️, my cutiee ❤️`,
+button:""
+}
+
+];
+
+let page=0;
+
+function showPage(){
+
+const current=pages[page];
+
+document.getElementById("bg").style.backgroundImage =
+"url('"+current.image+"')";
+
+document.getElementById("text").innerText =
+current.text;
+
+const btn=document.getElementById("nextBtn");
+
+if(current.button===""){
+
+btn.style.display="none";
+
+document.getElementById("signature").style.display="block";
+
+sparkleBurst();
+
+}
+else{
+
+btn.style.display="inline-block";
+
+btn.innerText=current.button;
+
+}
+
+celebrationHearts();
+
+}
+
+/* next page */
+
+function nextPage(){
+
+if(page < pages.length-1){
+
+page++;
+
+document.getElementById("card").style.opacity=0;
+
+setTimeout(()=>{
+
+showPage();
+
+document.getElementById("card").style.opacity=1;
+
+},350);
+
+}
+
+}
+
+showPage();
+
+/* hearts animation */
+
+function celebrationHearts(){
+
+for(let i=0;i<15;i++){
+
+setTimeout(()=>{
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(28 + Math.random()*20)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),7000);
+
+},i*150);
+
+}
+
+}
+
+/* sparkle burst */
+
+function sparkleBurst(){
+
+for(let i=0;i<30;i++){
+
+const sparkle=document.createElement("div");
+
+sparkle.className="sparkle";
+
+sparkle.innerHTML="✨";
+
+sparkle.style.left=Math.random()*100+"vw";
+
+sparkle.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(sparkle);
+
+setTimeout(()=>sparkle.remove(),2000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
