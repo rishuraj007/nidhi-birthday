@@ -82,10 +82,10 @@
             width: 90vw;
             max-width: 500px;
             padding: 40px 35px;
-            background: rgba(15, 15, 15, 0.75);
-            backdrop-filter: blur(20px) saturate(180%);
+            background: rgba(10, 10, 10, 0.65);
+            backdrop-filter: blur(15px) saturate(180%);
             border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: 
                 0 20px 60px rgba(0, 0, 0, 0.5),
                 0 0 80px rgba(255, 77, 109, 0.15);
@@ -131,8 +131,10 @@
             white-space: pre-line;
             font-weight: 300;
             letter-spacing: 0.3px;
-            color: rgba(255, 255, 255, 0.95);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            color: rgba(255, 255, 255, 0.98);
+            text-shadow: 
+                0 2px 10px rgba(0, 0, 0, 0.5),
+                0 1px 3px rgba(0, 0, 0, 0.8);
         }
 
         /* Enhanced button */
@@ -695,6 +697,11 @@
     <div class="warm-background"></div>
     <div id="bg"></div>
 
+    <!-- Audio for birthday tune (only plays after user interaction) -->
+    <audio id="birthdayAudio" loop>
+        <!-- Using Web Audio API to generate birthday tune -->
+    </audio>
+
     <div id="card">
         <div id="text"></div>
         <button id="nextBtn" onclick="nextPage()">Next ❤️</button>
@@ -966,7 +973,7 @@ my Madamji ❤️, my cutiee ❤️`,
             // Add Happy Birthday Banner
             const banner = document.createElement('div');
             banner.className = 'birthday-banner';
-            banner.innerHTML = 'Happy Birthday';
+            banner.innerHTML = 'Happy Birthday Nidhi';
             banner.id = 'birthdayBanner';
             document.body.appendChild(banner);
 
@@ -1122,6 +1129,81 @@ my Madamji ❤️, my cutiee ❤️`,
         document.body.addEventListener('touchmove', (e) => {
             e.preventDefault();
         }, { passive: false });
+
+        // Birthday tune using Web Audio API
+        let audioContext = null;
+        let isPlaying = false;
+
+        function playBirthdayTune() {
+            if (isPlaying) return;
+            
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                isPlaying = true;
+
+                // Happy Birthday melody notes (in Hz)
+                const melody = [
+                    { note: 262, duration: 0.3 }, // C
+                    { note: 262, duration: 0.15 }, // C
+                    { note: 294, duration: 0.45 }, // D
+                    { note: 262, duration: 0.45 }, // C
+                    { note: 349, duration: 0.45 }, // F
+                    { note: 330, duration: 0.9 },  // E
+                    
+                    { note: 262, duration: 0.3 }, // C
+                    { note: 262, duration: 0.15 }, // C
+                    { note: 294, duration: 0.45 }, // D
+                    { note: 262, duration: 0.45 }, // C
+                    { note: 392, duration: 0.45 }, // G
+                    { note: 349, duration: 0.9 },  // F
+                ];
+
+                let time = audioContext.currentTime;
+
+                function playNote(frequency, duration, startTime) {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+
+                    oscillator.frequency.value = frequency;
+                    oscillator.type = 'sine';
+
+                    // Soft volume
+                    gainNode.gain.setValueAtTime(0.15, startTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + duration);
+
+                    oscillator.start(startTime);
+                    oscillator.stop(startTime + duration);
+                }
+
+                // Play melody in loop
+                function playMelody() {
+                    let currentTime = audioContext.currentTime;
+                    melody.forEach((note, index) => {
+                        playNote(note.note, note.duration, currentTime);
+                        currentTime += note.duration + 0.05;
+                    });
+                    
+                    // Loop the melody
+                    setTimeout(playMelody, (currentTime - audioContext.currentTime + 2) * 1000);
+                }
+
+                playMelody();
+            } catch (error) {
+                console.log('Audio not available');
+            }
+        }
+
+        // Start music on first button click
+        let musicStarted = false;
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            if (!musicStarted) {
+                playBirthdayTune();
+                musicStarted = true;
+            }
+        });
     </script>
 </body>
 </html>
