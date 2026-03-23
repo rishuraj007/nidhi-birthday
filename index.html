@@ -23,6 +23,21 @@
             background: #0a0a0a;
             color: white;
             text-align: center;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Performance optimizations */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Enable hardware acceleration for animations */
+        .heart, .sparkle, .balloon, .confetti, .cake-piece, .knife, .particle, .light-bulb {
+            will-change: transform, opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         /* Background with smooth transitions */
@@ -691,7 +706,7 @@
         const pages = [
             {
                 image: "photo1.png",
-                text: `Happy Birthday cutieeee ❤️❤️
+                text: `Happy Birthday Cutieee❤️❤️
 
 Today is special
 because the most beautiful person
@@ -783,9 +798,9 @@ I will keep reminding you
 
 how special you are to me.
 
-Happy Birthday madamji!
+Happy Birthday
 
-I love you so much ❤️`,
+my Madamji ❤️, my cutiee ❤️`,
                 button: ""
             }
         ];
@@ -865,7 +880,7 @@ I love you so much ❤️`,
 
         /* Enhanced hearts animation */
         function celebrationHearts() {
-            for (let i = 0; i < 12; i++) {
+            for (let i = 0; i < 8; i++) { // Reduced from 12 to 8
                 setTimeout(() => {
                     const heart = document.createElement("div");
                     heart.className = "heart";
@@ -874,16 +889,17 @@ I love you so much ❤️`,
                     heart.style.fontSize = (24 + Math.random() * 20) + "px";
                     heart.style.animationDelay = (Math.random() * 2) + "s";
                     heart.style.animationDuration = (6 + Math.random() * 3) + "s";
+                    heart.style.willChange = 'transform, opacity';
                     
                     document.body.appendChild(heart);
                     setTimeout(() => heart.remove(), 10000);
-                }, i * 200);
+                }, i * 250); // Increased spacing from 200ms to 250ms
             }
         }
 
         /* Enhanced sparkle burst */
         function sparkleBurst() {
-            for (let i = 0; i < 40; i++) {
+            for (let i = 0; i < 25; i++) { // Reduced from 40 to 25
                 setTimeout(() => {
                     const sparkle = document.createElement("div");
                     sparkle.className = "sparkle";
@@ -891,16 +907,17 @@ I love you so much ❤️`,
                     sparkle.style.left = Math.random() * 100 + "vw";
                     sparkle.style.top = Math.random() * 100 + "vh";
                     sparkle.style.animationDelay = (Math.random() * 0.5) + "s";
+                    sparkle.style.willChange = 'transform, opacity';
                     
                     document.body.appendChild(sparkle);
                     setTimeout(() => sparkle.remove(), 3000);
-                }, i * 50);
+                }, i * 60); // Increased spacing from 50ms to 60ms
             }
         }
 
         /* Particle effect for final page */
         function createParticles() {
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 20; i++) { // Reduced from 30 to 20
                 const particle = document.createElement("div");
                 particle.className = "particle";
                 particle.style.left = Math.random() * 100 + "vw";
@@ -908,6 +925,7 @@ I love you so much ❤️`,
                 particle.style.setProperty('--drift', (Math.random() - 0.5) * 2);
                 particle.style.animationDelay = (Math.random() * 2) + "s";
                 particle.style.animationDuration = (4 + Math.random() * 3) + "s";
+                particle.style.willChange = 'transform, opacity';
                 
                 document.body.appendChild(particle);
                 setTimeout(() => particle.remove(), 8000);
@@ -926,18 +944,19 @@ I love you so much ❤️`,
 
             const colors = ['#FFD700', '#FF6B9D', '#4ECDC4', '#FF6B6B', '#95E1D3', '#FFA07A'];
             
-            // Create multiple strings of lights
-            for (let row = 0; row < 4; row++) {
-                for (let i = 0; i < 15; i++) {
+            // Reduced lights for performance (3 rows instead of 4, 12 lights per row instead of 15)
+            for (let row = 0; row < 3; row++) {
+                for (let i = 0; i < 12; i++) {
                     setTimeout(() => {
                         const light = document.createElement('div');
                         light.className = 'light-bulb';
                         light.style.color = colors[Math.floor(Math.random() * colors.length)];
-                        light.style.left = (i * 7) + '%';
-                        light.style.top = (row * 25) + 'px';
+                        light.style.left = (i * 8.5) + '%';
+                        light.style.top = (row * 30) + 'px';
                         light.style.animationDelay = (Math.random() * 2) + 's';
+                        light.style.willChange = 'opacity, filter, transform';
                         lightsContainer.appendChild(light);
-                    }, i * 50);
+                    }, i * 60);
                 }
             }
         }
@@ -947,15 +966,14 @@ I love you so much ❤️`,
             // Add Happy Birthday Banner
             const banner = document.createElement('div');
             banner.className = 'birthday-banner';
-            banner.innerHTML = 'Happy Birthday Nidhi!';
+            banner.innerHTML = 'Happy Birthday';
             banner.id = 'birthdayBanner';
             document.body.appendChild(banner);
 
-            const balloonColors = ['🎈', '🎈', '🎈', '🎈', '🎈'];
             const balloonEmojis = ['🎈', '🎉', '🎊', '✨', '🎁'];
 
-            // Create balloons
-            for (let i = 0; i < 20; i++) {
+            // Create fewer balloons for better performance (10 instead of 20)
+            for (let i = 0; i < 10; i++) {
                 setTimeout(() => {
                     const balloon = document.createElement('div');
                     balloon.className = 'balloon';
@@ -964,26 +982,36 @@ I love you so much ❤️`,
                     balloon.style.setProperty('--drift', (Math.random() - 0.5) * 200 + 'px');
                     balloon.style.setProperty('--rotate', (Math.random() - 0.5) * 360 + 'deg');
                     balloon.style.animationDelay = (Math.random() * 1) + 's';
+                    balloon.style.willChange = 'transform';
                     
                     document.body.appendChild(balloon);
                     setTimeout(() => balloon.remove(), 7000);
-                }, i * 150);
+                }, i * 200);
             }
 
-            // Add continuous sparklers
+            // Reduced sparklers frequency for performance
+            let sparklerCount = 0;
+            const maxSparklers = 20; // Limit total sparklers
             const sparklerInterval = setInterval(() => {
-                for (let i = 0; i < 5; i++) {
+                if (sparklerCount >= maxSparklers) {
+                    clearInterval(sparklerInterval);
+                    return;
+                }
+                
+                for (let i = 0; i < 3; i++) { // Reduced from 5 to 3
                     const sparkle = document.createElement('div');
                     sparkle.className = 'sparkle';
                     sparkle.innerHTML = '✨';
                     sparkle.style.left = Math.random() * 100 + 'vw';
                     sparkle.style.top = Math.random() * 100 + 'vh';
                     sparkle.style.animationDelay = (Math.random() * 0.3) + 's';
+                    sparkle.style.willChange = 'transform, opacity';
                     
                     document.body.appendChild(sparkle);
                     setTimeout(() => sparkle.remove(), 2500);
+                    sparklerCount++;
                 }
-            }, 500);
+            }, 800); // Increased interval from 500ms to 800ms
 
             // Show birthday cake
             setTimeout(() => {
@@ -991,10 +1019,11 @@ I love you so much ❤️`,
                 cake.className = 'birthday-cake';
                 cake.innerHTML = '🎂';
                 cake.id = 'birthdayCake';
+                cake.style.willChange = 'transform';
                 document.body.appendChild(cake);
                 
-                // Clear sparkler interval after some time
-                setTimeout(() => clearInterval(sparklerInterval), 5000);
+                // Clear sparkler interval
+                clearInterval(sparklerInterval);
             }, 2000);
         }
 
@@ -1013,6 +1042,7 @@ I love you so much ❤️`,
                 const knife = document.createElement('div');
                 knife.className = 'knife';
                 knife.innerHTML = '🔪';
+                knife.style.willChange = 'transform, opacity';
                 document.body.appendChild(knife);
 
                 // Wait for knife animation to complete (3 seconds)
@@ -1028,14 +1058,15 @@ I love you so much ❤️`,
                         setTimeout(() => {
                             cakeElement.style.display = 'none';
                             
-                            // Create cake pieces with better distribution
-                            const pieces = ['🍰', '🧁', '🍰', '🧁', '🍰', '🧁', '🍰', '🧁'];
+                            // Reduced cake pieces for performance (6 instead of 8)
+                            const pieces = ['🍰', '🧁', '🍰', '🧁', '🍰', '🧁'];
                             pieces.forEach((piece, index) => {
                                 const cakePiece = document.createElement('div');
                                 cakePiece.className = 'cake-piece';
                                 cakePiece.innerHTML = piece;
                                 cakePiece.style.left = '50%';
                                 cakePiece.style.bottom = '80px';
+                                cakePiece.style.willChange = 'transform, opacity';
                                 
                                 const angle = (index / pieces.length) * Math.PI * 2;
                                 const distance = 250;
@@ -1047,8 +1078,8 @@ I love you so much ❤️`,
                                 setTimeout(() => cakePiece.remove(), 2000);
                             });
 
-                            // Massive confetti explosion
-                            for (let i = 0; i < 150; i++) {
+                            // Reduced confetti for better performance (80 instead of 150)
+                            for (let i = 0; i < 80; i++) {
                                 setTimeout(() => {
                                     const confetti = document.createElement('div');
                                     confetti.className = 'confetti';
@@ -1058,10 +1089,11 @@ I love you so much ❤️`,
                                     confetti.style.top = '35%';
                                     confetti.style.animationDelay = (Math.random() * 0.3) + 's';
                                     confetti.style.animationDuration = (2.5 + Math.random() * 1.5) + 's';
+                                    confetti.style.willChange = 'transform, opacity';
                                     
                                     document.body.appendChild(confetti);
                                     setTimeout(() => confetti.remove(), 4000);
-                                }, i * 15);
+                                }, i * 20);
                             }
                         }, 200);
                     }
