@@ -1,217 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Nidhi ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: #0a0a0a;
+            color: white;
+            text-align: center;
+        }
 
-<title>For Nidhi ❤️</title>
+        /* Background with smooth transitions */
+        #bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(3px) brightness(70%);
+            z-index: 1;
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            animation: fadeInBg 1.5s ease-in forwards;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+        @keyframes fadeInBg {
+            to { opacity: 1; }
+        }
 
-<style>
+        /* Gradient overlay for better text readability */
+        #bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(0, 0, 0, 0.5) 100%
+            );
+        }
 
-body{
-margin:0;
-font-family:'Poppins',sans-serif;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-overflow:hidden;
-background:black;
-color:white;
-text-align:center;
-}
+        /* Enhanced card design */
+        #card {
+            position: relative;
+            z-index: 5;
+            width: 90vw;
+            max-width: 500px;
+            padding: 40px 35px;
+            background: rgba(15, 15, 15, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 80px rgba(255, 77, 109, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideUp 0.8s ease-out;
+        }
 
-/* background */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-#bg{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background-size:cover;
-background-position:center;
-filter:blur(2px) brightness(80%);
-z-index:1;
-transition:1s;
-}
+        #card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 25px 70px rgba(0, 0, 0, 0.6),
+                0 0 100px rgba(255, 77, 109, 0.2);
+        }
 
-/* card */
+        /* Text styling */
+        #text {
+            font-size: 19px;
+            line-height: 1.8;
+            min-height: 220px;
+            white-space: pre-line;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
 
-#card{
-position:relative;
-z-index:5;
-width:85vw;
-max-width:420px;
-padding:30px;
-background:rgba(0,0,0,0.45);
-border-radius:20px;
-transition:0.4s;
-}
+        /* Enhanced button */
+        button {
+            margin-top: 30px;
+            padding: 16px 36px;
+            font-size: 17px;
+            font-weight: 500;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff4d6d 0%, #ff6b88 100%);
+            color: white;
+            cursor: pointer;
+            box-shadow: 
+                0 8px 25px rgba(255, 77, 109, 0.4),
+                0 0 0 0 rgba(255, 77, 109, 0.5);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
 
-#text{
-font-size:20px;
-line-height:1.6;
-min-height:200px;
-white-space:pre-line;
-}
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
 
-/* button */
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
 
-button{
-margin-top:20px;
-padding:14px 28px;
-font-size:18px;
-border:none;
-border-radius:30px;
-background:#ff4d6d;
-color:white;
-cursor:pointer;
-box-shadow:0 0 15px rgba(255,77,109,0.6);
-}
+        button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 12px 35px rgba(255, 77, 109, 0.5),
+                0 0 40px rgba(255, 77, 109, 0.3);
+        }
 
-button:hover{
-transform:scale(1.08);
-}
+        button:active {
+            transform: translateY(-1px) scale(1.02);
+        }
 
-/* signature */
+        /* Signature with elegant font */
+        #signature {
+            margin-top: 30px;
+            font-size: 24px;
+            font-family: 'Dancing Script', cursive;
+            opacity: 0;
+            animation: fadeInSignature 1.5s ease-in forwards 0.5s;
+            color: #ff4d6d;
+            text-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+        }
 
-#signature{
-margin-top:20px;
-font-size:16px;
-opacity:0.9;
-display:none;
-}
+        @keyframes fadeInSignature {
+            to { opacity: 1; }
+        }
 
-/* floating hearts */
+        /* Floating hearts animation */
+        .heart {
+            position: fixed;
+            bottom: -50px;
+            font-size: 32px;
+            animation: floatUp 7s ease-in-out infinite;
+            z-index: 2;
+            filter: drop-shadow(0 0 8px rgba(255, 77, 109, 0.6));
+            pointer-events: none;
+        }
 
-.heart{
-position:fixed;
-bottom:-50px;
-font-size:32px;
-animation:floatUp 7s linear infinite;
-z-index:2;
-}
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-@keyframes floatUp{
-from{transform:translateY(0);opacity:1;}
-to{transform:translateY(-110vh);opacity:0;}
-}
+        /* Enhanced sparkle animation */
+        .sparkle {
+            position: fixed;
+            color: #ffd700;
+            font-size: 20px;
+            animation: sparkleFloat 2.5s ease-out forwards;
+            z-index: 10;
+            filter: drop-shadow(0 0 5px #ffd700);
+            pointer-events: none;
+        }
 
-/* sparkle animation */
+        @keyframes sparkleFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.3) rotate(0deg);
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1.8) rotate(180deg);
+            }
+        }
 
-.sparkle{
-position:fixed;
-color:#ffd700;
-font-size:16px;
-animation:sparkleFloat 2s linear forwards;
-z-index:10;
-}
+        /* Loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeOut 1s ease-out 1.5s forwards;
+        }
 
-@keyframes sparkleFloat{
-0%{opacity:1;transform:translateY(0) scale(0.5);}
-100%{opacity:0;transform:translateY(-80px) scale(1.5);}
-}
+        .loading-heart {
+            font-size: 60px;
+            animation: pulse 1s ease-in-out infinite;
+        }
 
-</style>
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            #card {
+                padding: 30px 25px;
+            }
+            
+            #text {
+                font-size: 17px;
+                min-height: 200px;
+            }
+            
+            button {
+                font-size: 16px;
+                padding: 14px 30px;
+            }
+        }
+
+        /* Particle effect */
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.6;
+            animation: particleFloat 3s linear infinite;
+            z-index: 3;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(calc(var(--drift) * 30px));
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Loading screen -->
+    <div class="loading">
+        <div class="loading-heart">❤️</div>
+    </div>
 
-<div id="bg"></div>
+    <div id="bg"></div>
 
-<div id="card">
+    <div id="card">
+        <div id="text"></div>
+        <button id="nextBtn" onclick="nextPage()">Next ❤️</button>
+        <div id="signature" style="display: none;">— Rishu ❤️</div>
+    </div>
 
-<div id="text"></div>
+    <script>
+        /* Pages data */
+        const pages = [
+            {
+                image: "photo1.png",
+                text: `Happy Birthday meri cutieeeeee❤️❤️
 
-<button id="nextBtn" onclick="nextPage()">Next ❤️</button>
-
-<div id="signature">— Rishu ❤️</div>
-
-</div>
-
-<script>
-
-/* pages */
-
-const pages=[
-
-{
-image:"photo1.png",
-text:`Happy Birthday Nidhi..❤️❤️
-
-My cutie, today is special
+Today is special
 because the most beautiful person
 in my life was born.
 
 Your smile makes my day better,
 and somehow you make my world
 a little brighter just by being in it.`,
-button:"Next ❤️"
-},
-
-{
-image:"black",
-text:`Ready for a little shayari?
+                button: "Next ❤️"
+            },
+            {
+                image: "black",
+                text: `Ready for a little shayari?
 😮‍💨😮‍💨😮‍💨`,
-button:"Arz Kiya Hai 🎤"
-},
-
-{
-image:"photo2.png",
-text:`Din bhar ki daud mein
+                button: "Arz Kiya Hai 🎤"
+            },
+            {
+                image: "photo2.png",
+                text: `Din bhar ki daud mein
 
 Jab dil thak sa jata hai
 
 Raat mein aapki reels dekh ke
 
-Dil muskura sa jata hai
-`,
-button:"Muskura Ke Dabaye ❤️"
-},
-
-{
-image:"photo3.png",
-text:`Kabhi kabhi apni tasveer bhej diya karo
+Dil muskura sa jata hai`,
+                button: "Muskura Ke Dabaye ❤️"
+            },
+            {
+                image: "photo3.png",
+                text: `Kabhi kabhi apni tasveer bhej diya karo
 
 Dil ko thoda sa khush kar diya karo
 
 Har baar mujhe maangna na pade
 
 Kabhi kabhi surprise hi de diya karo`,
-button:"Dil Se Dabaye ❤️"
-},
-
-{
-image:"photo4.png",
-text:`Aapki mehnat ek din rang layegi
+                button: "Dil Se Dabaye ❤️"
+            },
+            {
+                image: "photo4.png",
+                text: `Aapki mehnat ek din rang layegi
 
 CA Final ki manzil bhi tumhe mil jayegi
 
 Main har dua mein tumhara naam rakhta hoon
 
 Mujhe pata hai meri madamji zaroor jeet jayegi`,
-button:"Dabaye ❤️"
-},
-
-{
-image:"photo5.png",
-text:`Shayari likhna itna aasaan nahi tha
+                button: "Dabaye ❤️"
+            },
+            {
+                image: "photo5.png",
+                text: `Shayari likhna itna aasaan nahi tha
 
 Dil ki baat kehna bhi utna aasaan nahi tha
 
 Isliye thodi madad ChatGPT se le li maine
 🥹👉👈
 Par har lafz ke peeche ehsaas sirf mera hi tha`,
-button:"Dabaye❤️"
-},
-
-{
-image:"photo6.jpeg",
-text:`One day soon,
+                button: "Dabaye❤️"
+            },
+            {
+                image: "photo6.jpeg",
+                text: `One day soon,
 
 I will proudly call you
 my wife.
@@ -225,124 +402,120 @@ how special you are to me.
 Happy Birthday
 
 my Madamji ❤️, my cutiee ❤️`,
-button:""
-}
+                button: ""
+            }
+        ];
 
-];
+        let page = 0;
 
-let page=0;
+        function showPage() {
+            const current = pages[page];
 
-function showPage(){
+            // Update background
+            const bgImage = current.image === "black" ? "" : `url('${current.image}')`;
+            const bg = document.getElementById("bg");
+            bg.style.backgroundImage = bgImage;
+            bg.style.backgroundColor = current.image === "black" ? "#0a0a0a" : "";
 
-const current=pages[page];
+            // Update text with typing effect
+            const textElement = document.getElementById("text");
+            textElement.style.opacity = 0;
+            setTimeout(() => {
+                textElement.innerText = current.text;
+                textElement.style.transition = "opacity 0.8s ease-in";
+                textElement.style.opacity = 1;
+            }, 200);
 
-document.getElementById("bg").style.backgroundImage =
-"url('"+current.image+"')";
+            const btn = document.getElementById("nextBtn");
 
-document.getElementById("text").innerText =
-current.text;
+            if (current.button === "") {
+                btn.style.display = "none";
+                document.getElementById("signature").style.display = "block";
+                sparkleBurst();
+                createParticles();
+            } else {
+                btn.style.display = "inline-block";
+                btn.innerText = current.button;
+            }
 
-const btn=document.getElementById("nextBtn");
+            celebrationHearts();
+        }
 
-if(current.button===""){
+        /* Navigate to next page */
+        function nextPage() {
+            if (page < pages.length - 1) {
+                page++;
+                const card = document.getElementById("card");
+                card.style.opacity = 0;
+                card.style.transform = "scale(0.95)";
 
-btn.style.display="none";
+                setTimeout(() => {
+                    showPage();
+                    card.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+                    card.style.opacity = 1;
+                    card.style.transform = "scale(1)";
+                }, 400);
+            }
+        }
 
-document.getElementById("signature").style.display="block";
+        /* Enhanced hearts animation */
+        function celebrationHearts() {
+            for (let i = 0; i < 12; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement("div");
+                    heart.className = "heart";
+                    heart.innerHTML = "❤️";
+                    heart.style.left = Math.random() * 100 + "vw";
+                    heart.style.fontSize = (24 + Math.random() * 20) + "px";
+                    heart.style.animationDelay = (Math.random() * 2) + "s";
+                    heart.style.animationDuration = (6 + Math.random() * 3) + "s";
+                    
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 10000);
+                }, i * 200);
+            }
+        }
 
-sparkleBurst();
+        /* Enhanced sparkle burst */
+        function sparkleBurst() {
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement("div");
+                    sparkle.className = "sparkle";
+                    sparkle.innerHTML = "✨";
+                    sparkle.style.left = Math.random() * 100 + "vw";
+                    sparkle.style.top = Math.random() * 100 + "vh";
+                    sparkle.style.animationDelay = (Math.random() * 0.5) + "s";
+                    
+                    document.body.appendChild(sparkle);
+                    setTimeout(() => sparkle.remove(), 3000);
+                }, i * 50);
+            }
+        }
 
-}
-else{
+        /* Particle effect for final page */
+        function createParticles() {
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement("div");
+                particle.className = "particle";
+                particle.style.left = Math.random() * 100 + "vw";
+                particle.style.top = "100vh";
+                particle.style.setProperty('--drift', (Math.random() - 0.5) * 2);
+                particle.style.animationDelay = (Math.random() * 2) + "s";
+                particle.style.animationDuration = (4 + Math.random() * 3) + "s";
+                
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 8000);
+            }
+        }
 
-btn.style.display="inline-block";
+        // Initialize
+        showPage();
 
-btn.innerText=current.button;
-
-}
-
-celebrationHearts();
-
-}
-
-/* next page */
-
-function nextPage(){
-
-if(page < pages.length-1){
-
-page++;
-
-document.getElementById("card").style.opacity=0;
-
-setTimeout(()=>{
-
-showPage();
-
-document.getElementById("card").style.opacity=1;
-
-},350);
-
-}
-
-}
-
-showPage();
-
-/* hearts animation */
-
-function celebrationHearts(){
-
-for(let i=0;i<15;i++){
-
-setTimeout(()=>{
-
-const heart=document.createElement("div");
-
-heart.className="heart";
-
-heart.innerHTML="❤️";
-
-heart.style.left=Math.random()*100+"vw";
-
-heart.style.fontSize=(28 + Math.random()*20)+"px";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>heart.remove(),7000);
-
-},i*150);
-
-}
-
-}
-
-/* sparkle burst */
-
-function sparkleBurst(){
-
-for(let i=0;i<30;i++){
-
-const sparkle=document.createElement("div");
-
-sparkle.className="sparkle";
-
-sparkle.innerHTML="✨";
-
-sparkle.style.left=Math.random()*100+"vw";
-
-sparkle.style.top=Math.random()*100+"vh";
-
-document.body.appendChild(sparkle);
-
-setTimeout(()=>sparkle.remove(),2000);
-
-}
-
-}
-
-</script>
-
+        // Add smooth scroll prevention
+        document.body.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+    </script>
 </body>
-
 </html>
